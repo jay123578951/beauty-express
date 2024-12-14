@@ -1,9 +1,11 @@
 const express = require("express");
-require("dotenv").config();
 const cors = require("cors");
 const session = require("express-session");
 
+require("dotenv").config();
+
 const app = express();
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json()); // 解析 JSON
 app.use(
@@ -42,6 +44,6 @@ app.get("/", (req, res) => {
 });
 
 // 啟動伺服器
-app.listen(3001, () => {
+app.listen(PORT, () => {
   console.log("Server is running on http://localhost:3001");
 });
