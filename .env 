@@ -1,0 +1,13 @@
+# 資料庫設定
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=Jay0987847647@
+DB_NAME=beauty_database
+
+# 伺服器設定
+PORT=3000
+
+# JWT 密鑰
+JWT_SECRET=
+
+# 第三方服務
