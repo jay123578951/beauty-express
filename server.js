@@ -10,7 +10,17 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json()); // 解析 JSON
 app.use(
   cors({
-    origin: "http://localhost:3000", // 設定允許的來源
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "http://localhost:3000",
+        "http://13.112.145.125:3000",
+      ];
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true, // 啟用 cookies
   })
 );
@@ -44,6 +54,6 @@ app.get("/", (req, res) => {
 });
 
 // 啟動伺服器
-app.listen(PORT, () => {
-  console.log("Server is running on http://localhost:3001");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on http://<EC2_IP_ADDRESS>:${PORT}`);
 });

@@ -77,7 +77,7 @@ exports.checkAuth = (req, res) => {
 
 // 獲取用戶資料 API
 exports.getProfile = (req, res) => {
-  const uuid = req.session.user?.uuid;
+  const uuid = req.body?.id;
 
   if (!uuid) {
     return res.status(401).send("User not authenticated");
