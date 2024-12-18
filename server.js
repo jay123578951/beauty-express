@@ -13,7 +13,7 @@ app.use(
     origin: (origin, callback) => {
       const allowedOrigins = [
         "http://localhost:3000",
-        "http://13.112.145.125:3000",
+        "https://findyourbeauty.netlify.app",
       ];
       if (allowedOrigins.includes(origin) || !origin) {
         callback(null, true);
@@ -21,6 +21,8 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // 啟用 cookies
   })
 );
