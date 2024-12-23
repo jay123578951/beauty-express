@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 const session = require("express-session");
 
 require("dotenv").config();
@@ -8,24 +7,6 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json()); // 解析 JSON
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:3000",
-        "https://findyourbeauty.netlify.app",
-      ];
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // 啟用 cookies
-  })
-);
 
 app.use(
   session({
